@@ -4,6 +4,7 @@ import { AsignacionTurnoRotativo } from "src/asignacion_turno_rotativo/entities/
 import { Ausencia } from "src/ausencias/entities/ausencia.entity";
 import { Cargo } from "src/cargos/entities/cargo.entity";
 import { Cenco } from "src/cencos/cenco.entity";
+import { DiasCompensacion } from "src/dias_compensacion/entities/dias_compensacion.entity";
 import { Empresa } from "src/empresas/empresas.entity";
 import { Estado } from "src/estado/estado.entity";
 import { Firma } from "src/firmas/entities/firma.entity";

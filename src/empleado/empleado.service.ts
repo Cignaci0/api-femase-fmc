@@ -129,26 +129,15 @@ export class EmpleadoService {
   }
 
 
-  async findAll(page: number, limit: number, empresa_id?: number, estado_id?: number, search?: string) {
+  async findAll(page: number, limit: number, empresa_id?: number, estado_id?: number) {
     const skip = (page - 1) * limit;
 
     const filters: any = {};
     if (empresa_id) filters.empresa = { empresa_id };
     if (estado_id) filters.estado = { estado_id };
 
-    let whereClause: any = filters;
-    if (search && search.trim() !== "") {
-      const term = `%${search.trim()}%`;
-      whereClause = [
-        { ...filters, run: ILike(term) },
-        { ...filters, nombres: ILike(term) },
-        { ...filters, apellido_paterno: ILike(term) },
-        { ...filters, apellido_materno: ILike(term) },
-      ];
-    }
-
     const [empleados, total] = await this.empleadoRepository.findAndCount({
-      where: whereClause,
+      where: filters,
       order: {
         empleado_id: 'ASC'
       },
