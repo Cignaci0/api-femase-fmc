@@ -5,6 +5,7 @@ import { Ausencia } from "src/ausencias/entities/ausencia.entity";
 import { Cargo } from "src/cargos/entities/cargo.entity";
 import { Cenco } from "src/cencos/cenco.entity";
 import { DiasCompensacion } from "src/dias_compensacion/entities/dias_compensacion.entity";
+import { DiasCompensacionAprobada } from "src/dias_compensacion_aprobadas/entities/dias_compensacion_aprobada.entity";
 import { Empresa } from "src/empresas/empresas.entity";
 import { Estado } from "src/estado/estado.entity";
 import { Firma } from "src/firmas/entities/firma.entity";
@@ -160,16 +161,23 @@ export class Empleado {
   @ApiProperty({ description: 'pin firma', example: 1234 })
   pin_firma: number;
 
-  @Column({default:true})
-  noti_30_entrada:boolean
+  @Column({ default: true })
+  noti_30_entrada: boolean
 
-  @Column({default:true})
-  noti_30_salida:boolean
+  @Column({ default: true })
+  noti_30_salida: boolean
 
   @Column({ nullable: true, default: false })
   @ApiProperty({ description: 'Indica si el empleado tiene turno flexible', example: true })
   tiene_turno_flexible: boolean;
 
+  @Column({ nullable: true })
+  @ApiProperty({ description: 'hora turno flexible', example: "01:00" })
+  hora_turno_flexible: string
+
   @OneToMany(() => DiasCompensacion, (dias_compensacion) => dias_compensacion.empleado)
   dias_compensacion: DiasCompensacion[];
+
+  @OneToMany(() => DiasCompensacionAprobada, (dias_compensacion_aprobada) => dias_compensacion_aprobada.empleado)
+  dias_compensacion_aprobada: DiasCompensacionAprobada[];
 }

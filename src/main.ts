@@ -11,6 +11,7 @@ async function bootstrap() {
   app.use('/utils', express.static(join(process.cwd(), 'utils')));
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
   app.enableCors();
+  app.setGlobalPrefix('api');
 
   const config = new DocumentBuilder()
     .setTitle('API FMC')
