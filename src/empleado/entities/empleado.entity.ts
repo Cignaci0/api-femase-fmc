@@ -4,6 +4,8 @@ import { AsignacionTurnoRotativo } from "src/asignacion_turno_rotativo/entities/
 import { Ausencia } from "src/ausencias/entities/ausencia.entity";
 import { Cargo } from "src/cargos/entities/cargo.entity";
 import { Cenco } from "src/cencos/cenco.entity";
+import { DiasCompensacion } from "src/dias_compensacion/entities/dias_compensacion.entity";
+import { DiasCompensacionAprobada } from "src/dias_compensacion_aprobadas/entities/dias_compensacion_aprobada.entity";
 import { Empresa } from "src/empresas/empresas.entity";
 import { Estado } from "src/estado/estado.entity";
 import { Firma } from "src/firmas/entities/firma.entity";
@@ -175,4 +177,7 @@ export class Empleado {
 
   @OneToMany(() => DiasCompensacion, (dias_compensacion) => dias_compensacion.empleado)
   dias_compensacion: DiasCompensacion[];
+
+  @OneToMany(() => DiasCompensacionAprobada, (dias_compensacion_aprobada) => dias_compensacion_aprobada.empleado)
+  dias_compensacion_aprobada: DiasCompensacionAprobada[];
 }

@@ -81,10 +81,10 @@ import { DocumentoModule } from './documento/documento.module';
 import { FirmasModule } from './firmas/firmas.module';
 import { SolicitudesModule } from './solicitudes/solicitudes.module';
 import { RegistroConexionesModule } from './registro_conexiones/registro_conexiones.module';
-import { HorasCompensacionModule } from './horas_compensacion/horas_compensacion.module';
-import { HorasCompensacion } from './horas_compensacion/entities/horas_compensacion.entity';
-import { SolicitudHorasCompensacionModule } from './solicitud_horas_compensacion/solicitud_horas_compensacion.module';
-import { SolicitudHorasCompensacion } from './solicitud_horas_compensacion/entities/solicitud_horas_compensacion.entity';
+import { DiasCompensacionModule } from './dias_compensacion/dias_compensacion.module';
+import { DiasCompensacion } from './dias_compensacion/entities/dias_compensacion.entity';
+import { DiasCompensacionAprobadasModule } from './dias_compensacion_aprobadas/dias_compensacion_aprobadas.module';
+import { DiasCompensacionAprobada } from './dias_compensacion_aprobadas/entities/dias_compensacion_aprobada.entity';
 
 @Module({
   imports: [
@@ -95,8 +95,8 @@ import { SolicitudHorasCompensacion } from './solicitud_horas_compensacion/entit
       host: 'localhost',
       port: 5432,
       username: 'postgres',
-      password: 'superadmin',
-      database: 'femase',
+      password: 'Admin',
+      database: 'postgres',
       synchronize: false,
       entities: [
         User,
@@ -137,8 +137,8 @@ import { SolicitudHorasCompensacion } from './solicitud_horas_compensacion/entit
         Solicitude,
         RegistroConexione,
         RegistroEvento,
-        HorasCompensacion,
-        SolicitudHorasCompensacion
+        DiasCompensacion,
+        DiasCompensacionAprobada
       ]
     }),
     MailerModule.forRoot({
@@ -197,8 +197,7 @@ import { SolicitudHorasCompensacion } from './solicitud_horas_compensacion/entit
     FirmasModule,
     SolicitudesModule,
     RegistroConexionesModule,
-    HorasCompensacionModule,
-    SolicitudHorasCompensacionModule
+    DiasCompensacionModule
   ],
   providers: [PerfilesService],
   controllers: [PerfilesController],

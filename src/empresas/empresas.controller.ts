@@ -7,7 +7,6 @@ import { AuthGuard } from 'src/auth/auth.guard';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname, join } from 'path';
-import { Multer } from 'multer';
 
 @Controller('empresas')
 @UseGuards(AuthGuard)
@@ -70,7 +69,7 @@ export class EmpresasController {
   }))
   async uploadLogo(
     @Param('id', ParseIntPipe) id: number,
-    @UploadedFile() file: any,
+    @UploadedFile() file: Express.Multer.File,
     @Req() req: any,
     @Ip() ip: string,
     @Headers('user-agent') userAgent: string
@@ -84,22 +83,5 @@ export class EmpresasController {
     const filename = await this.empresaService.obtenerLogoEmpresa(+id);
     const filePath = join(__dirname, '../../imgEmpresas', filename);
     return res.sendFile(filePath);
-  }
-
-  @Get("cierreMes/:id")
-  async obtenerCierreMes(@Param("id") id: string) {
-    return this.empresaService.obtenerCierreMes(+id);
-  }
-
-  @Patch('cierreMes/:id/:cierreMes')
-  actualizarCierreMesEmpresa(
-    @Param('id') id: string,
-    @Param('cierreMes') cierreMes: string,
-    @Req() req: any,
-    @Ip() ip: string,
-    @Headers('user-agent') userAgent: string
-  ) {
-    const idUsuario = req.user.sub;
-    return this.empresaService.actualizarCierreMes(+id, +cierreMes, idUsuario, ip, userAgent);
   }
 }
